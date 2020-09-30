@@ -16,6 +16,8 @@ interface climaDAO {
     @Query("SELECT * FROM clima_table")
     fun getAllClimaFromDB(): LiveData<List<climaItem>>
 
-    @Query("SELECT * FROM clima_table WHERE id =:id")
-    fun getClimaByID(id: String ): LiveData<climaItem>
+    @Query("SELECT * FROM clima_table WHERE id=:id" )
+    fun getClimaByID(id: String): LiveData<climaItem>
+
+
 }

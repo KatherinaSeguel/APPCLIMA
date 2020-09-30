@@ -9,7 +9,7 @@ import com.example.appclima.climaItem
 
 private const val DATA_BASE_NAME="clima_db"
 
-@Database(entities = [Tiempo::class, climaItem::class], version = 1)
+@Database(entities = [climaItem::class], version = 1)
 
 abstract class ClimaDB : RoomDatabase() {
 

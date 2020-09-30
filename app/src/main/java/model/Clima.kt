@@ -1,3 +1,3 @@
-package com.example.appclima
+package model
 
 data class Tiempo(val clima : ArrayList<ClimaItem>)

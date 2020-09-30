@@ -1,4 +1,4 @@
-package com.example.appclima
+package model
 
 
 import androidx.room.Entity

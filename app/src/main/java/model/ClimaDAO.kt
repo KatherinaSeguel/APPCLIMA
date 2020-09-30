@@ -5,19 +5,19 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.appclima.climaItem
+import com.example.appclima.ClimaItem
 
 @Dao
-interface climaDAO {
+interface ClimaDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAllClima(mClimaList: List<climaItem>)
+    suspend fun insertAllClima(mClimaList: List<ClimaItem>)
 
     @Query("SELECT * FROM clima_table")
-    fun getAllClimaFromDB(): LiveData<List<climaItem>>
+    fun getAllClimaFromDB(): LiveData<List<ClimaItem>>
 
     @Query("SELECT * FROM clima_table WHERE id=:id" )
-    fun getClimaByID(id: String): LiveData<climaItem>
+    fun getClimaByID(id: String): LiveData<ClimaItem>
 
 
 }

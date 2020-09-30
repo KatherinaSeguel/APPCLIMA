@@ -4,16 +4,15 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.appclima.Tiempo
-import com.example.appclima.climaItem
+import com.example.appclima.ClimaItem
 
 private const val DATA_BASE_NAME="clima_db"
 
-@Database(entities = [climaItem::class], version = 1)
+@Database(entities = [ClimaItem::class], version = 1)
 
 abstract class ClimaDB : RoomDatabase() {
 
-    abstract fun getClimaDAO(): climaDAO
+    abstract fun getClimaDAO(): ClimaDAO
 
     companion object {
 

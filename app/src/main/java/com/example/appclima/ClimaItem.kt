@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "clima_table")
-data class climaItem(
+data class ClimaItem(
     @PrimaryKey val id: String,
     @SerializedName("Codigo")
     val codigo: String,

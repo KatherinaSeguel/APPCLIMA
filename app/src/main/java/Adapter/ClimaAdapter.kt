@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.appclima.R
 import kotlinx.android.synthetic.main.clima.view.*
 import model.ClimaItem
-import model.Tiempo
+import ui.FirstFragment
 
-class ClimaAdapter(var mPassClima : Clima): RecyclerView.Adapter<ClimaAdapter.TaskViewHolder>() {
+class ClimaAdapter(var mPassClima: FirstFragment): RecyclerView.Adapter<ClimaAdapter.TaskViewHolder>() {
 
-    private var dataList = emptyList<Tiempo>()
+    private var dataList = emptyList<ClimaItem>()
 
-    fun updateListClima(mDatalist: List<Tiempo>){
+    fun updateListClima(mDatalist: List<ClimaItem>){
 
         dataList = mDatalist
         notifyDataSetChanged()
@@ -34,7 +34,7 @@ class ClimaAdapter(var mPassClima : Clima): RecyclerView.Adapter<ClimaAdapter.Ta
 
     override fun onBindViewHolder(holder: ClimaAdapter.TaskViewHolder, position: Int) {
         val mClima = dataList[position]
-        holder.climaName.text = mClima.clima.toString()
+        holder.climaName.text = mClima.clima
     }
 
     override fun getItemCount() = dataList.size

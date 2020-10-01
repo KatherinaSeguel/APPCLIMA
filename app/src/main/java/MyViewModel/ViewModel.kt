@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import model.ClimaDB
 import model.ClimaItem
 import model.Repository
+import model.Tiempo
 
 
 class ViewModel(application: Application): AndroidViewModel(application){

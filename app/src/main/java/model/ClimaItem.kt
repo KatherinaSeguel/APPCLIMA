@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "clima_table")
 data class ClimaItem(
-    @PrimaryKey val clima: String,
+    @PrimaryKey (autoGenerate = true) val clima: Int = 0,
     @SerializedName("Codigo")
     val codigo: String,
     @SerializedName("Estacion")

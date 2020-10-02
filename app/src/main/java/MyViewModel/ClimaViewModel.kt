@@ -9,7 +9,7 @@ import model.Repository
 import model.Tiempo
 
 
-class ViewModel(application: Application): AndroidViewModel(application){
+class ClimaViewModel(application: Application): AndroidViewModel(application){
 
     private val mRepository : Repository
     val mAllClima : LiveData<List<ClimaItem>>

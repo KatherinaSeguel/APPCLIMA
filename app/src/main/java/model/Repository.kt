@@ -18,22 +18,26 @@ class Repository(private val mClimaDAO: ClimaDAO) {
     val mDataTiempoDBList = mutableListOf<Tiempo>()
 
     fun getTiempoFromServer() {
-
+    Log.d("mas", "saludo")
         val mCall = service.getClimaFromApi()
-        mCall.enqueue(object : Callback<Tiempo>{
-            override fun onResponse(call: Call<Tiempo>, response: Response<Tiempo>){
+        mCall.enqueue(object : Callback<List<ClimaItem>>{
+            override fun onResponse(call: Call<List<ClimaItem>>, response: Response<List<ClimaItem>>){
+                Log.d("otro log", response.body().toString())
                 when(response.code()){
 
                     in 200..299 -> CoroutineScope(Dispatchers.IO).launch {
                         response.body()?.let {
-                            mClimaDAO.insertAllClima(it.clima)
+                            Log.d("clima", it.toString())
+                           mClimaDAO.insertAllClima(it)
+
                         }
                     }
                     in 300..399 -> Log.d("ERROR 300 ", response.errorBody().toString())
                 }
             }
 
-            override fun onFailure(call: Call<Tiempo>, t: Throwable) {
+            override fun onFailure(call: Call<List<ClimaItem>>, t: Throwable) {
+                Log.d("error", t.message.toString())
 
             }
 

@@ -1,7 +1,7 @@
 package ui
 
 import Adapter.ClimaAdapter
-import MyViewModel.ViewModel
+import MyViewModel.ClimaViewModel
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,14 +16,15 @@ import com.example.appclima.R
 import kotlinx.android.synthetic.main.fragment_first.*
 import model.ClimaItem
 
+
 class FirstFragment : Fragment() {
 
-    lateinit var mViewModel: ViewModel
+    lateinit var mClimaViewModel: ClimaViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true) //activar menu item
-        mViewModel = ViewModelProvider(this).get(ViewModel::class.java)
+        setHasOptionsMenu(true)
+        mClimaViewModel = ViewModelProvider(this).get(ClimaViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -42,15 +43,16 @@ class FirstFragment : Fragment() {
         mRecyclerView.adapter = mAdapter
         mRecyclerView.layoutManager = LinearLayoutManager(context)
 
-        mViewModel.mAllClima.observe(viewLifecycleOwner, Observer {
+        mClimaViewModel.mAllClima.observe(viewLifecycleOwner, Observer {
             mAdapter.updateListClima(it)
+            Log.d("funciona", it.toString())
 
         })
     }
 
-    fun passClimas(mClimas: String){
+    fun passClimas(mClimas: ClimaItem){
         val mBundle = Bundle()
-        mBundle.putString("clima", mClimas)
+        // mBundle.putString("clima", mClimas)
         findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment,mBundle)
     }
 

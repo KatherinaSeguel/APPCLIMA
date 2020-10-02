@@ -7,7 +7,7 @@ class RetrofitClima {
 
     companion object{
 
-        private const val URL_BASE = "https://api.gael.cl/general/public/clima"
+        private const val URL_BASE = "https://api.gael.cl/general/public/"
 
         fun getRetroClima() : ApiClima {
 

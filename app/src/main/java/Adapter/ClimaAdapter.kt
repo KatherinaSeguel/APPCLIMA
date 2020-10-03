@@ -23,7 +23,7 @@ class ClimaAdapter(var mPassClima: FirstFragment): RecyclerView.Adapter<ClimaAda
         val itemView = itemView.setOnClickListener(this)
 
         override fun onClick(p0: View?) {
-            mPassClima.passClimas(dataList[adapterPosition])
+            mPassClima.passClima(dataList[adapterPosition])
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClimaAdapter.TaskViewHolder {
@@ -35,6 +35,7 @@ class ClimaAdapter(var mPassClima: FirstFragment): RecyclerView.Adapter<ClimaAda
     override fun onBindViewHolder(holder: ClimaAdapter.TaskViewHolder, position: Int) {
         val mClima = dataList[position]
         holder.climaName.text = mClima.estacion
+
 
 
     }

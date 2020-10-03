@@ -2,6 +2,7 @@ package model
 
 import Retrofit.RetrofitClima
 import android.util.Log
+import androidx.lifecycle.LiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,17 +19,20 @@ class Repository(private val mClimaDAO: ClimaDAO) {
     val mDataTiempoDBList = mutableListOf<Tiempo>()
 
     fun getTiempoFromServer() {
-    Log.d("mas", "saludo")
+        Log.d("mas", "saludo")
         val mCall = service.getClimaFromApi()
-        mCall.enqueue(object : Callback<List<ClimaItem>>{
-            override fun onResponse(call: Call<List<ClimaItem>>, response: Response<List<ClimaItem>>){
+        mCall.enqueue(object : Callback<List<ClimaItem>> {
+            override fun onResponse(
+                call: Call<List<ClimaItem>>,
+                response: Response<List<ClimaItem>>
+            ) {
                 Log.d("otro log", response.body().toString())
-                when(response.code()){
+                when (response.code()) {
 
                     in 200..299 -> CoroutineScope(Dispatchers.IO).launch {
                         response.body()?.let {
                             Log.d("clima", it.toString())
-                           mClimaDAO.insertAllClima(it)
+                            mClimaDAO.insertAllClima(it)
 
                         }
                     }
@@ -42,8 +46,32 @@ class Repository(private val mClimaDAO: ClimaDAO) {
             }
 
         })
+
     }
+
+    fun getOneByCodigo(codigo: String): LiveData<ClimaItem>{
+        return mClimaDAO.getCodigoByID(codigo)
+    }
+
+    fun getOneByEstado(estado: String): LiveData<ClimaItem>{
+        return mClimaDAO.getEstadoByID(estado)
+    }
+
+    fun getOneByHora(horaUpdate: String): LiveData<ClimaItem>{
+        return mClimaDAO.getHoraByID(horaUpdate)
+    }
+
+    fun getOneByTemperatura(temp: String): LiveData<ClimaItem>{
+        return mClimaDAO.getTempByID(temp)
+    }
+
+    fun getOneByHumedad(humedad: String): LiveData<ClimaItem>{
+        return mClimaDAO.getHumedadByID(humedad)
+    }
+
+
 }
+
 
 
 

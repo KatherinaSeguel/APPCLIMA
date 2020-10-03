@@ -1,5 +1,6 @@
 package ui
 
+import Adapter.Clima
 import Adapter.ClimaAdapter
 import MyViewModel.ClimaViewModel
 import android.os.Bundle
@@ -17,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_first.*
 import model.ClimaItem
 
 
-class FirstFragment : Fragment() {
+open class FirstFragment : Fragment(), Clima {
 
     lateinit var mClimaViewModel: ClimaViewModel
 
@@ -25,6 +26,7 @@ class FirstFragment : Fragment() {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
         mClimaViewModel = ViewModelProvider(this).get(ClimaViewModel::class.java)
+
     }
 
     override fun onCreateView(
@@ -38,6 +40,7 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         val mRecyclerView = recyclerView
         val mAdapter = ClimaAdapter(this)
         mRecyclerView.adapter = mAdapter
@@ -48,12 +51,18 @@ class FirstFragment : Fragment() {
             Log.d("funciona", it.toString())
 
         })
+
     }
 
-    fun passClimas(mClimas: ClimaItem){
+    override fun passClima(mClima: ClimaItem) {
         val mBundle = Bundle()
-        // mBundle.putString("clima", mClimas)
-        findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment,mBundle)
+        mBundle.putString("codigo", mClima.codigo)
+        mBundle.putString("estado", mClima.estado)
+        mBundle.putString("Update", mClima.horaUpdate)
+        mBundle.putString("Humedad", mClima.humedad)
+        mBundle.putString("temperatura", mClima.temp)
+        findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment, mBundle)
     }
-
 }
+
+

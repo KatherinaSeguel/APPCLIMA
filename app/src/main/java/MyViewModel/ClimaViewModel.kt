@@ -21,4 +21,24 @@ class ClimaViewModel(application: Application): AndroidViewModel(application){
         mRepository.getTiempoFromServer()
     }
 
+    fun getOneCodigo(codigo : String): LiveData<ClimaItem>{
+        return mRepository.getOneByCodigo(codigo)
+    }
+
+    fun getOneHora(horaUpdate : String): LiveData<ClimaItem>{
+        return mRepository.getOneByHora(horaUpdate)
+    }
+
+    fun getOneEstado(estado: String): LiveData<ClimaItem>{
+        return mRepository.getOneByEstado(estado)
+    }
+
+    fun getOneTemperatura(temp: String): LiveData<ClimaItem>{
+        return mRepository.getOneByTemperatura(temp)
+    }
+
+    fun getOneHumedad(humedad: String): LiveData<ClimaItem>{
+        return mRepository.getOneByHumedad(humedad)
+    }
+
 }

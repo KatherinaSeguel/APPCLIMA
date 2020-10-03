@@ -1,23 +1,17 @@
 package model
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 
 @Dao
 interface ClimaDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAllClima(mClimaList: List<ClimaItem>)
+    fun insertAllClima(mClimaList: List<ClimaItem>)
 
     @Query("SELECT * FROM clima_table")
     fun getAllClimaFromDB(): LiveData<List<ClimaItem>>
-
-    @Query("SELECT * FROM clima_table WHERE clima=:clima" )
-    fun getClimaByID(clima: String): LiveData<ClimaItem>
 
     @Query("SELECT * FROM clima_table WHERE codigo=:codigo" )
     fun getCodigoByID(codigo: String): LiveData<ClimaItem>
@@ -34,5 +28,9 @@ interface ClimaDAO {
 
     @Query("SELECT * FROM clima_table WHERE humedad=:humedad" )
     fun getHumedadByID(humedad: String): LiveData<ClimaItem>
+
+    @Update
+    fun getUpdate(mClimaList: List<ClimaItem>)
+
 
 }

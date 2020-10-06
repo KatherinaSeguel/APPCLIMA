@@ -20,4 +20,5 @@ data class ClimaItem(
     val humedad: String,
     @SerializedName("Temp")
     val temp: String
+
 )
